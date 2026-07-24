@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[#f7f9fd] text-navy-900 font-sans antialiased;
+  overflow-x: hidden;
+}
+
+/* --- Selection --- */
+::selection {
+  background: #2E8BE6;
+  color: #fff;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #eef4fc;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#1E5AA8, #0B2A5B);
+  border-radius: 999px;
+  border: 3px solid #eef4fc;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-sky/40;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-royal to-sky text-white shadow-glow hover:shadow-[0_0_60px_-10px_rgba(46,139,230,0.85)] hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply btn border border-navy-200 bg-white/70 text-navy-800 backdrop-blur hover:border-sky hover:text-royal;
+  }
+  .btn-white {
+    @apply btn bg-white text-navy-900 hover:-translate-y-0.5 hover:shadow-card;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-sky/25 bg-sky/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-royal;
+  }
+
+  .card-glass {
+    @apply rounded-3xl border border-white/60 bg-white/70 shadow-soft backdrop-blur-xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-royal via-sky to-azure bg-clip-text text-transparent;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-sky after:transition-all after:duration-300 hover:after:w-full;
+  }
+}
+
+/* Grain / noise overlay */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.mesh-bg {
+  background-color: #0B2A5B;
+  background-image:
+    radial-gradient(at 18% 22%, rgba(46, 139, 230, 0.55) 0px, transparent 55%),
+    radial-gradient(at 82% 12%, rgba(30, 90, 168, 0.6) 0px, transparent 50%),
+    radial-gradient(at 72% 88%, rgba(77, 163, 232, 0.35) 0px, transparent 55%),
+    radial-gradient(at 25% 92%, rgba(11, 42, 91, 0.9) 0px, transparent 55%);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(11, 42, 91, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 42, 91, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%);
+}
