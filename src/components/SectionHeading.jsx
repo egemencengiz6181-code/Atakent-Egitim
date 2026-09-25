@@ -6,7 +6,7 @@ export default function SectionHeading({ eyebrow, title, desc, align = 'center',
     <div className={`${isCenter ? 'mx-auto max-w-3xl text-center' : 'max-w-2xl'}`}>
       {eyebrow && (
         <Reveal>
-          <span className="eyebrow">{eyebrow}</span>
+          <span className={`eyebrow ${light ? 'border-white/20 bg-white/10 text-white' : ''}`}>{eyebrow}</span>
         </Reveal>
       )}
       <Reveal delay={0.05}>

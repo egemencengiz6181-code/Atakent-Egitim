@@ -1,14 +1,13 @@
 # Atakent Eğitim Kurumları — Web Sitesi
 
-Premium, modern ve tamamen responsive kurumsal eğitim sitesi.
-**Slogan:** _Başarmak sanattır._
+Kurumsal eğitim sitesi. **Slogan:** _Kendine Güven, Yapabileceğine İnan_ · **Motto:** _Ayrıcalık, Bilgi ve Değer_
 
 ## Teknoloji
 
-- **Vite + React 18** — hızlı, modüler yapı
-- **Tailwind CSS** — logodan türetilmiş marka renk sistemi (lacivert / royal / parlak mavi)
-- **Framer Motion** — scroll animasyonları, mikro etkileşimler
-- **React Router** — çok sayfalı yapı
+- **Vite + React 18**: sayfalar lazy-load ile ayrı paketlere bölünür
+- **Tailwind CSS**: Atakent logosundan türetilmiş lacivert / royal / parlak mavi renk sistemi
+- **Framer Motion**: scroll animasyonları, banner slider, filtre geçişleri
+- **React Router**: çok sayfalı yapı
 
 ## Sayfalar
 
@@ -16,30 +15,35 @@ Premium, modern ve tamamen responsive kurumsal eğitim sitesi.
 |-------|-----|
 | Anasayfa | `/` |
 | Kurumsal | `/kurumsal` |
-| Başarı Modeli | `/basari-modeli` |
+| Hakkımızda | `/hakkimizda` |
 | Eğitim Felsefemiz | `/egitim-felsefemiz` |
-| Kampüslerimiz | `/kampuslerimiz` |
-| İletişim & Ön Kayıt | `/iletisim` |
+| Bölgelerimiz | `/bolgelerimiz` |
+| Kurumlarımız | `/kurumlarimiz` (`?bolge=sariyer`, `?ilce=Halkalı` filtreleri) |
+| Kurum Detay | `/kurumlarimiz/:slug` |
+| İletişim & Ön Kayıt | `/iletisim` (`?program=LGS Hazırlık`, `?kurum=<slug>` ön seçimleri) |
 
 ## Çalıştırma
 
 ```bash
-cd site
-npm install        # bağımlılıklar (kurulu)
+npm install
 npm run dev        # geliştirme sunucusu → http://localhost:5173
 npm run build      # üretim derlemesi → dist/
 npm run preview    # derlemeyi önizle → http://localhost:4173
 ```
 
-## İçerik & Görseller
+## İçerik
 
-- **Logo & Başarı Modeli posterleri** `public/media/` altında.
-- Marka renkleri Atakent logosundaki ∞ mavi geçişinden alınmıştır.
-- Metin içerikleri Atakent Eğitim için özgün olarak yazılmıştır; iletişim
-  bilgileri (telefon, adres, e-posta) örnektir — gerçek bilgilerle
-  `src/data/content.js` dosyasından güncelleyebilirsiniz.
+- **`src/data/site.js`**: marka ve iletişim bilgileri, menü, değerler, programlar, kurum listesi, bölgeler, istatistikler, zaman çizelgesi, referanslar, SSS, sınav geri sayım tarihleri
+- **`src/data/kurumDetay.js`**: her kurumun tanıtım metni, adresi, telefonu, Instagram ve harita bağlantısı, program ve rehberlik sekmeleri
+- **`public/banner/`**: anasayfa duyuru bannerları (1920px ve 960px `-sm` sürümleri)
+- **`public/media/atakent-logo.jpeg`**: logo ve favicon
 
-## Özelleştirme
+Yeni kurum eklerken `site.js › institutions` listesine bir kayıt, `kurumDetay.js › institutionDetails` içine aynı `slug` ile detay ekleyin.
 
-Tüm metinler, istatistikler, kampüsler ve program bilgileri tek dosyada:
-**`src/data/content.js`** — buradan kolayca düzenlenebilir.
+## Ön kayıt formu
+
+Form bir sunucuya gönderilmez. Bilgileri doldurulmuş bir mesajla WhatsApp'ı açar (`brand.whatsapp`).
+
+## Yayın
+
+`vercel.json` tüm yolları `index.html`'e yönlendirir, böylece `/kurumlarimiz/tarabya-final` gibi alt sayfalar doğrudan açılabilir ve yenilenebilir.

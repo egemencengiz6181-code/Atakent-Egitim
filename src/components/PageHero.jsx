@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Icon from './Icon'
 
-export default function PageHero({ eyebrow, title, desc, crumb }) {
+export default function PageHero({ eyebrow, title, desc, crumb, parent }) {
   return (
     <section className="relative overflow-hidden mesh-bg noise pt-[74px]">
       <div className="pointer-events-none absolute -right-24 top-10 h-80 w-80 rounded-full bg-sky/25 blur-3xl" />
@@ -11,10 +11,17 @@ export default function PageHero({ eyebrow, title, desc, crumb }) {
         <motion.nav
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 text-xs font-medium text-white/60"
+          aria-label="Sayfa yolu"
+          className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/60"
         >
           <Link to="/" className="hover:text-white">Anasayfa</Link>
           <Icon name="arrow" className="h-3.5 w-3.5" />
+          {parent && (
+            <>
+              <Link to={parent.to} className="hover:text-white">{parent.label}</Link>
+              <Icon name="arrow" className="h-3.5 w-3.5" />
+            </>
+          )}
           <span className="text-white/90">{crumb}</span>
         </motion.nav>
 
@@ -35,7 +42,7 @@ export default function PageHero({ eyebrow, title, desc, crumb }) {
       </div>
 
       {/* Dalga geçişi */}
-      <svg viewBox="0 0 1440 80" className="block w-full text-[#f7f9fd]" preserveAspectRatio="none">
+      <svg viewBox="0 0 1440 80" className="block w-full text-[#f7f9fd]" preserveAspectRatio="none" aria-hidden="true">
         <path fill="currentColor" d="M0,48 C240,80 480,80 720,56 C960,32 1200,16 1440,40 L1440,80 L0,80 Z" />
       </svg>
     </section>
